@@ -1,0 +1,35 @@
+.wrapper{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    padding: 80px;
+    gap: 40px;
+}
+
+.heading{
+    font-size: 36px;
+    font-weight: 500;
+    line-height: 53.46px;
+    text-align: center;
+    color: #212121
+}
+
+.text{
+    font-size: 20px;
+    line-height: 29.7px;
+    text-align: center;
+    color: #212121;
+}
+
+.logout_button{
+    font-size: 16px;
+    text-align: center;
+    line-height: 24px;
+    font-weight: 500;
+    border: none;
+    outline: none;
+    background: transparent;
+    cursor: pointer;
+}

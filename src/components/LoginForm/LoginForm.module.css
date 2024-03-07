@@ -1,0 +1,52 @@
+.form_wrapper{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 48px;
+}
+
+.heading{
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 47.52px;
+    text-align: center;
+    color: #212121;
+}
+.input_wrapper{
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+.registration_link{
+    text-decoration: none;
+    line-height: 24px;
+    text-align: center;
+    font-weight: 500;
+    color: #212121;
+    font-size: 16px;
+}
+.login_input,
+.password_input{
+    min-width: 343px;
+    padding: 13px 16px;
+    border-radius: 12px;
+    color: #545454;
+    background-color: #f8f8f8;
+    line-height: 24px;
+    border: none;
+    font-size: 16px;
+    outline: none;
+}
+.login_button{
+    background-color: #292929;
+    color: #fff;
+    min-width: 343px;
+    padding: 13px 16px;
+    border-radius: 12px;
+    font-weight: 500;
+    font-size: 16px;
+    cursor: pointer;
+}
+

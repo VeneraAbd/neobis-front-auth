@@ -1,16 +1,13 @@
-import { useLocation, useNavigate } from 'react-router-dom';
+import IntroLeft from "../../components/IntroLeft/IntroLeft";
+import LoginForm from "../../components/LoginForm/LoginForm";
+import styles from "./Login.module.css";
 
 const Login = () => {
-  const navigate = useNavigate();
-  const location = useLocation();
-
-  console.log(location, "location")
-  const fromPage = location.state?.from?.pathname || '/';
 
   return (
-    <div>
-      <h1>Login</h1>
-      {fromPage}
+    <div className={styles.container}>
+      <IntroLeft />
+      <LoginForm />
 
     </div>
   )

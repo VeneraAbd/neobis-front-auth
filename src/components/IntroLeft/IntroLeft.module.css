@@ -1,0 +1,23 @@
+.wrapper{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+}
+
+.heading{
+    font-size: 48px;
+    font-weight: 500;
+    line-height: 71.28px;
+    text-align: center;
+    color: #212121
+}
+
+.text{
+    font-size: 28px;
+    line-height: 41.58px;
+    text-align: center;
+    color: #212121;
+}
