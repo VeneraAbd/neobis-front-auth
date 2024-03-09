@@ -70,6 +70,21 @@
     border: none;
     font-size: 16px;
     outline: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.input{
+    border: none;
+    font-size: 16px;
+    outline: none;
+    background-color: #f8f8f8;
+}
+.showHide_btn{
+    background: transparent;
+    border: none;
+    cursor: pointer;
+
 }
 .login_button{
     background-color: #292929;
@@ -84,3 +99,14 @@
 .link{
     text-decoration: none;
 }
+
+input.input_error,
+select.input_error{
+    border-color: red;
+}
+.error{
+    color: red;
+}
+.valid {
+    color: green;
+  }
