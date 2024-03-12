@@ -4,6 +4,7 @@ import Login from "../src/pages/Login/Login";
 import Confirmation from "../src/pages/Confirmation/Confirmation";
 import Registration from "../src/pages/Registration/Registration";
 
+
 function App() {
 
   return (

@@ -1,8 +1,7 @@
 import * as yup from 'yup';
 
-// regex for validation username and password
-const USER_REGEX = /^[a-zA-Z][a-zA-Z0-9-_]{3,23}$/; //It must start with lower or uppercase letters && must be followed by 3 to 23 characters that can be uppercase or lowercase letters, digits from 0 to 9, or hyphen or underscore
-// const PWR_REGEX =/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/ //requires at least 1 lowercase, 1 uppercase letter, 1 digit from 0-9, and special characters !@#$%;
+const USER_REGEX = /^[a-zA-Z][a-zA-Z0-9-_]{3,23}$/; 
+// const PWR_REGEX =/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/
 
 
 export const signupValidationSchema = yup.object().shape({
@@ -21,8 +20,14 @@ export const signupValidationSchema = yup.object().shape({
         .matches(/\d+/, 'Минимум 1 цифра')
         .matches(/[@$!%*#?&]+/, 'Минимум 1 спецсимвол (!, ", #, $...)'),
     
-        confirmPassword: yup
+    confirmPassword: yup
         .string()
         .oneOf([yup.ref("password"), null], "Пароли должны совпадать")
         .required("Обязательное поле"),
+})
+
+export const loginValidationSchema = yup.object().shape({
+    username: yup.string().required('Введите почту'),
+    password: yup.string().required('Введите пароль'),
+    
 })

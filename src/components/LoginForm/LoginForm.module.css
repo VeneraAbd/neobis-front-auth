@@ -27,18 +27,6 @@
     color: #212121;
     font-size: 16px;
 }
-.login_input,
-.password_input{
-    min-width: 343px;
-    padding: 13px 16px;
-    border-radius: 12px;
-    color: #545454;
-    background-color: #f8f8f8;
-    line-height: 24px;
-    border: none;
-    font-size: 16px;
-    outline: none;
-}
 .login_button{
     background-color: #292929;
     color: #fff;
@@ -52,21 +40,37 @@
 .login_button:disabled{
     background-color: #d7d7d7;
     color: #767676;
-    /* min-width: 343px;
-    padding: 13px 16px;
-    border-radius: 12px;
-    font-weight: 500;
-    font-size: 16px;
-    cursor: pointer; */
 }
 
 .login_button:active{
     background-color: #595959;
     color: #f8f8f8;
-    /* min-width: 343px;
+}
+.showHide_btn{
+    background: transparent;
+    border: none;
+    cursor: pointer;
+
+}
+.login_input,
+.password_input{
+    min-width: 343px;
     padding: 13px 16px;
     border-radius: 12px;
-    font-weight: 500;
+    color: #545454;
+    background-color: #f8f8f8;
+    line-height: 24px;
+    border: none;
     font-size: 16px;
-    cursor: pointer; */
+    outline: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.input{
+    border: none;
+    font-size: 16px;
+    outline: none;
+    background-color: #f8f8f8;
 }
