@@ -154,10 +154,13 @@ const RegistrationForm = () => {
   }
 
   const onFormSubmit = (values) =>{
+    
     const { email, username, password } = values;
+    console.log(values, "values")
     dispatch(register({email, username, password})).then((action)=>{
       console.log(action.payload)
-      navigate("home");
+      toast.success("Вы успешно зарегистрированы");
+      navigate("confirmation");
     });  
   };
 

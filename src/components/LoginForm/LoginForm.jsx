@@ -9,29 +9,30 @@ import { login } from "../../store/reducers/auth";
 import { useState } from "react";
 import show from "../../assets/show.svg";
 import hide from "../../assets/hide.svg";
+import { useDispatch } from "react-redux";
 
 const LoginForm = () => {
   const navigate = useNavigate();
-  const [showPassword, setShowPassword] = useState(false);
+  const dispatch = useDispatch();
 
+  const [showPassword, setShowPassword] = useState(false);
+//Xiway86318@
+//xiway
   const toggleShowPassword = () =>{
     setShowPassword(!showPassword)
   }
 
-  const handleFormSubmit = async(values) => {
-      try{
-        const response = await login(values);
-        console.log(response);
-        toast.success("Вход выполнен успешно");
-        navigate('/home')
-
-      }catch(error){
-        console.log(error);
-        toast.error("Неверный логин или пароль");
-      }
+  const handleFormSubmit = (values) => {
+      const { username, password } = values;
+      console.log(values, "values")
+      dispatch(login({username, password})).then((action)=>{
+      console.log(action.payload)
+      navigate("home");
+      toast.success("Successfully logged in")
+    });
   }
 
-  const formik = useFormik({
+  const { values, errors, touched, handleBlur, handleChange, isValid, handleSubmit} = useFormik({
     initialValues:{
       username: "",
       password: "",
@@ -41,7 +42,7 @@ const LoginForm = () => {
   });
 
   return (
-    <form className={styles.form_wrapper} onSubmit={formik.handleSubmit}>
+    <form className={styles.form_wrapper} onSubmit={handleSubmit}>
       <h2 className={styles.heading}>Вэлком бэк!</h2>
       <div className={styles.input_wrapper}>
         <label htmlFor="username" className={styles.password_input}>
@@ -51,13 +52,13 @@ const LoginForm = () => {
               name="username"
               placeholder="Введи туда-сюда логин"
               className={styles.input}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              value={formik.values.username}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.username}
             />
         </label>
-        {formik.touched.username && formik.errors.username ? (
-              <div className={styles.error}>{formik.errors.username}</div>
+        {touched.username && errors.username ? (
+              <div className={styles.error}>{errors.username}</div>
             ) : null}
         <label htmlFor="password" className={styles.password_input}>
             <input 
@@ -66,14 +67,14 @@ const LoginForm = () => {
               name="password"
               placeholder="Пароль (тоже введи)"
               className={styles.input}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              value={formik.values.password}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.password}
             />
             <button className={styles.showHide_btn} onClick={toggleShowPassword} type="button"><img src={showPassword ? hide : show} alt="show or hide password" /></button>
         </label>
-        {formik.touched.password && formik.errors.password ? (
-              <div className={styles.error}>{formik.errors.password}</div>
+        {touched.password && errors.password ? (
+              <div className={styles.error}>{errors.password}</div>
             ) : null}
       </div>
       <button type="submit" className={styles.login_button}>Войти</button>

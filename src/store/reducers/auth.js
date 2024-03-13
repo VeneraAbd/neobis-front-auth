@@ -8,12 +8,12 @@ const initialState = {
 
 export const register = createAsyncThunk(
   "auth/register",
-  async (userData, thunkAPI) => {
+  async ({email, username, password}, thunkAPI) => {
     try {
       const response = await axios.post("https://kunasyl-backender.org.kg/register/", {
-        user: userData,
+       email, username, password
       });
-      return response.data.user;
+      return response;
     } catch (err) {
       return thunkAPI.rejectWithValue(err.response.data.errors);
     }
@@ -22,16 +22,16 @@ export const register = createAsyncThunk(
 
 export const login = createAsyncThunk(
   "auth/login",
-  async (userData, thunkAPI) => {
+  async ({username, password}, thunkAPI) => {
     try {
       const response = await axios.post(
         "https://kunasyl-backender.org.kg/login/",
         {
-          user: userData,
+          username, password
         }
       );
-    //   localStorage.setItem('accessToken', data.tokens)
-      return response.data.user;
+    localStorage.setItem('accessToken', response.tokens.access)
+      return response.data;
     } catch (err) {
       return thunkAPI.rejectWithValue(err.response.data.errors);
     }
