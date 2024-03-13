@@ -1,16 +1,22 @@
 import styles from "./Home.module.css";
 import image from "../../assets/image.svg";
-import { Link } from "react-router-dom";
-import { logout } from "../../api";
+import { getCurrentUser, logout } from "../../store/reducers/auth";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
 
 const Home = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch()
 
-  const handleLogout = async () => {
+  const handleLogout = () => {
     try {
-      await logout(); // Call the logout function from your API file
+      const refreshToken = localStorage.getItem("refreshToken");
+      dispatch(logout({refreshToken})); 
+      localStorage.removeItem("accessToken");
+      localStorage.removeItem("refreshToken");
       navigate('/');
+      window.location.reload();
     } catch (error) {
       console.error("Logout error:", error);
     }
@@ -20,9 +26,7 @@ const Home = () => {
       <h1 className={styles.heading}>Добро пожаловать!</h1>
       <p className={styles.text}>Lorby - твой личный репетитор</p>
       <img src={image} alt="intro image" className={styles.image}/>
-      <Link to="/">
-          <button onClick={handleLogout} className={styles.logout_button}>Выйти</button>
-      </Link>
+      <button onClick={handleLogout} className={styles.logout_button}>Выйти</button>     
     </section>
   )
 }

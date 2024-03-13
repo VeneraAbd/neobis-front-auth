@@ -160,7 +160,7 @@ const RegistrationForm = () => {
     dispatch(register({email, username, password})).then((action)=>{
       console.log(action.payload)
       toast.success("Вы успешно зарегистрированы");
-      navigate("confirmation");
+      navigate("/confirmation");
     });  
   };
 

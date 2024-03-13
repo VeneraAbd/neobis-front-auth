@@ -16,8 +16,7 @@ const LoginForm = () => {
   const dispatch = useDispatch();
 
   const [showPassword, setShowPassword] = useState(false);
-//Xiway86318@
-//xiway
+
   const toggleShowPassword = () =>{
     setShowPassword(!showPassword)
   }
@@ -26,7 +25,9 @@ const LoginForm = () => {
       const { username, password } = values;
       console.log(values, "values")
       dispatch(login({username, password})).then((action)=>{
-      console.log(action.payload)
+      // localStorage.setItem('accessToken', action.payload.tokens.access);
+      // localStorage.setItem('refreshToken', action.payload.tokens.refresh);
+      console.log(action.payload, "my action payload")
       navigate("home");
       toast.success("Successfully logged in")
     });
