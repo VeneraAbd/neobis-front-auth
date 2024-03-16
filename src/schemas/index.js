@@ -20,7 +20,7 @@ export const signupValidationSchema = yup.object().shape({
         .matches(/\d+/, 'Минимум 1 цифра')
         .matches(/[@$!%*#?&]+/, 'Минимум 1 спецсимвол (!, ", #, $...)'),
     
-    confirmPassword: yup
+    password_confirm: yup
         .string()
         .oneOf([yup.ref("password"), null], "Пароли должны совпадать")
         .required("Обязательное поле"),

@@ -1,14 +1,14 @@
 import React from 'react';
 import { useLocation, Navigate } from 'react-router-dom';
 
-const RequireAuth = ({children}) => {
+const RequireAuth = ({ children }) => {
     const location = useLocation();
-    const auth = false;
-
-    if(!auth){
-        return <Navigate to="/login" state={{from: location}}/>;
+    const auth = true;
+    if (!auth) {
+        return <Navigate to="/" state={{ from: location }} />;
     }
-  return children;
+
+    return children;
 }
 
-export default RequireAuth
+export default RequireAuth;

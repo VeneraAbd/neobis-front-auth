@@ -7,7 +7,6 @@
     justify-content: flex-start;
     gap: 100px;
     padding-top: 50px;
-
 }
 
 .button_goBack{
@@ -104,9 +103,14 @@ input.input_error,
 select.input_error{
     border-color: red;
 }
-.error{
-    color: red;
+.form__list{
+    min-width: 343px;
+    padding-left: 30px; 
 }
-.valid {
-    color: green;
+.error{
+    color: #EC0000;
+    ;
+}
+.success {
+    color: #1BA228;
   }

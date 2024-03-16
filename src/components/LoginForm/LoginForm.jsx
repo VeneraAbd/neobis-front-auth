@@ -3,7 +3,6 @@ import { useFormik } from 'formik';
 import { Link } from 'react-router-dom';
 import { loginValidationSchema } from "../../schemas/index";
 import { toast } from 'react-toastify';
-// import { login } from "../../api";
 import { useNavigate } from "react-router-dom";
 import { login } from "../../store/reducers/auth";
 import { useState } from "react";
@@ -14,24 +13,36 @@ import { useDispatch } from "react-redux";
 const LoginForm = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
+  
   const [showPassword, setShowPassword] = useState(false);
 
   const toggleShowPassword = () =>{
     setShowPassword(!showPassword)
   }
-
-  const handleFormSubmit = (values) => {
-      const { username, password } = values;
-      console.log(values, "values")
-      dispatch(login({username, password})).then((action)=>{
-      // localStorage.setItem('accessToken', action.payload.tokens.access);
-      // localStorage.setItem('refreshToken', action.payload.tokens.refresh);
-      console.log(action.payload, "my action payload")
-      navigate("home");
-      toast.success("Successfully logged in")
-    });
-  }
+  const handleFormSubmit = async (values) => {
+    const { username, password } = values;
+  
+    try {
+      const response = await dispatch(login({ username, password }));
+      console.log(response);
+      
+      if (response.payload) {
+        navigate('home');
+        toast.success('Successfully logged in');
+      } else {
+        toast.error('Invalid username or password');
+      }
+    } catch (error) {
+      console.error('Login error:', error);
+      
+      if (error.response && error.response.status === 401) {
+        toast.error('Unauthorized: Invalid username or password');
+      } else {
+        toast.error('Login failed');
+      }
+    }
+  };
+  
 
   const { values, errors, touched, handleBlur, handleChange, isValid, handleSubmit} = useFormik({
     initialValues:{
